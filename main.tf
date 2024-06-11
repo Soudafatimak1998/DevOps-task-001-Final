@@ -1,12 +1,12 @@
 provider "aws" {
-  region = "$AW"
+  region = "$AWS_REGION"
 }
 
 terraform {
   backend "s3" {
-    bucket         = "$bucket_name"
+    bucket         = "$BUCKET_NAME"
     key            = "terraform/state"
-    region         = "us-east-1"
+    region         = "$AWS_REGION"
     dynamodb_table = "terraform-lock"
   }
 }
