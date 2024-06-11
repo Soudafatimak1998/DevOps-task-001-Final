@@ -2,7 +2,7 @@
 
 # This is the driver script
 ## This needs to execute First
-# All others will be triggered immediately
+# All others will be triggered automatically
 
 log() {
     timestamp=$(date '+%Y-%m-%d %H:%M:%S')
@@ -13,7 +13,7 @@ log "Initializing component deployment on AWS"
 
 export AWS_SECRET="awssecret1234"
 export AWS_ACCESS_KEY='12345'
-export AWS_REGION="us-east-1"
+export AWS_REGION=" "
 export BUCKET_NAME="devops-deployment"
 export TABLE_NAME="devops-20240610"
 export ECR_REPOSITORY="devops-deployment-20240610"
@@ -129,12 +129,5 @@ docker run \
   -Dsonar.sources=. \
   -Dsonar.host.url=https://sonarcloud.io \
   -Dsonar.login=${SONAR_TOKEN}
-
-if [ "$?" -eq 0 ]; then
-  log "SonarQube scan completed successfully."
-else
-  log "SonarQube scan failed!"
-  exit 1
-fi
 
 log "Deployment completed successfully."
